@@ -6,8 +6,6 @@ This repository documents the integration of **TurtleBot3** with **NVIDIA Isaac 
 The project focuses on building a complete simulation-based mobile robot pipeline including **sensor simulation, TF synchronization, SLAM, and autonomous navigation (Nav2)**.
 
 ---
-![MSI_MAG](https://github.com/user-attachments/assets/ce1d5e9e-5e3f-414f-bdd6-6387d7986403)
-
 ## 1. Project Overview
 
 ### Objective
