@@ -22,6 +22,7 @@ src/FAST_LIO_LOCALIZATION_ROS2/PCD/
 .vscode/
 .idea/
 .codex
+*.swp
 
 # Large upstream demo assets not required by this project
 src/FAST_LIO_ROS2/doc/*.gif
@@ -33,4 +34,3 @@ src/FAST_LIO_LOCALIZATION_ROS2/doc/*.pdf
 *.log
 *.bag
 *.active
-
