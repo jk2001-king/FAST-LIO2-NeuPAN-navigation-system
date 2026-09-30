@@ -1,0 +1,19 @@
+local_costmap:
+  global_frame: map #odom
+  robot_base_frame: base_link
+
+  static_map: false
+  rolling_window: true
+
+  width: 20.0 #15.0
+  height: 20.0 #15.0
+
+  footprint_padding: 0.01
+
+  plugins:
+    - {name: obstacles_layer,  type: "costmap_2d::ObstacleLayer"}
+    - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+  
+  inflation_layer:
+    inflation_radius: 0.15 #0.5
+    cost_scaling_factor: 1.5

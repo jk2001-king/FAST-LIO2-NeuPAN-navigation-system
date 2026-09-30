@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<launch>
+  <node pkg="timed_roslaunch" type="timed_roslaunch.sh" args="10 base_model rplidar_n1.launch" name="timed_roslaunch1" output="screen"/>
+  <node pkg="timed_roslaunch" type="timed_roslaunch.sh" args="15 base_model rplidar_n2.launch" name="timed_roslaunch2" output="screen"/>
+  
+  <node pkg="laser_filters" type="scan_to_scan_filter_chain"
+      name="laser_filter1">
+    <rosparam command="load" file="$(find base_model)/config/laser_front.yaml"/>
+    <remap from="scan" to ="scan1"/>
+    <remap from="scan_filtered" to ="scan_filtered1"/>
+  </node>
+
+  <node pkg="laser_filters" type="scan_to_scan_filter_chain"
+      name="laser_filter2">
+    <rosparam command="load" file="$(find base_model)/config/laser_back.yaml"/>
+    <remap from="scan" to ="scan2"/>
+    <remap from="scan_filtered" to ="scan_filtered2"/>
+  </node>   
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="link1_broadcaster" args="-0.280 -0.225 0 1 0 0 0 laser laser1" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="link2_broadcaster" args="0.280 0.225 0.050 0 1 0 0 laser laser2" />
+  <!--node pkg="tf2_ros" type="static_transform_publisher" name="link2_broadcaster" args="0.06 0.24 0 0.56264 0.56264 0 -0.60570 laser laser2" /-->
+
+</launch>

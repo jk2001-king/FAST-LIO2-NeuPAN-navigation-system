@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+
+<launch>
+  <node name="rviz" pkg="rviz" type="rviz" required="true"
+        args="-d $(find base_model)/rviz/wheelchair.rviz" />
+</launch>

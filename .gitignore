@@ -1,0 +1,36 @@
+# ROS 2 / colcon outputs
+build/
+install/
+log/
+
+# Runtime and experiment data
+rosbag/
+*.db3
+*.mcap
+pcd/cloud_registered_accum*.pcd
+src/FAST_LIO_ROS2/PCD/
+src/FAST_LIO_LOCALIZATION_ROS2/PCD/
+
+# Generated logs and caches
+**/Log/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.cache/
+
+# IDE and local tooling
+.vscode/
+.idea/
+.codex
+
+# Large upstream demo assets not required by this project
+src/FAST_LIO_ROS2/doc/*.gif
+src/FAST_LIO_ROS2/doc/*.pdf
+src/FAST_LIO_LOCALIZATION_ROS2/doc/*.gif
+src/FAST_LIO_LOCALIZATION_ROS2/doc/*.pdf
+
+# Gazebo/runtime artifacts
+*.log
+*.bag
+*.active
+

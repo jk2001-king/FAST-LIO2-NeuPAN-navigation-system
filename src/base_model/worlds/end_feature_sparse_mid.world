@@ -1,0 +1,137 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="end_feature_sparse_mid_world">
+    <include><uri>model://sun</uri></include>
+    <include><uri>model://ground_plane</uri></include>
+
+    <model name="corridor_left_wall">
+      <static>true</static>
+      <pose>-21.0 2.0 1.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>30.0 0.1 2.0</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>30.0 0.1 2.0</size></box></geometry><material><script><name>Gazebo/Grey</name></script></material></visual>
+      </link>
+    </model>
+
+    <model name="corridor_right_wall">
+      <static>true</static>
+      <pose>-21.0 -2.0 1.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>30.0 0.1 2.0</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>30.0 0.1 2.0</size></box></geometry><material><script><name>Gazebo/Grey</name></script></material></visual>
+      </link>
+    </model>
+
+    <model name="start_end_wall">
+      <static>true</static>
+      <pose>-0.5 0 1.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.1 8.0 2.0</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.1 8.0 2.0</size></box></geometry><material><script><name>Gazebo/Blue</name></script></material></visual>
+      </link>
+    </model>
+
+    <model name="goal_end_wall">
+      <static>true</static>
+      <pose>-43.0 0 1.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.1 8.0 2.0</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.1 8.0 2.0</size></box></geometry><material><script><name>Gazebo/Blue</name></script></material></visual>
+      </link>
+    </model>
+
+    <!-- Start zone features: rich geometry around spawn -->
+    <model name="start_feature_cyl_left">
+      <static>true</static>
+      <pose>-2.5 1.0 1.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><cylinder><radius>0.3</radius><length>2.0</length></cylinder></geometry></collision>
+        <visual name="visual"><geometry><cylinder><radius>0.3</radius><length>2.0</length></cylinder></geometry><material><script><name>Gazebo/Red</name></script></material></visual>
+      </link>
+    </model>
+
+    <model name="start_feature_box_right">
+      <static>true</static>
+      <pose>-3.6 -1.45 0.55 0 0 0.15</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.9 0.8 1.1</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.9 0.8 1.1</size></box></geometry><material><script><name>Gazebo/Green</name></script></material></visual>
+      </link>
+    </model>
+
+    <model name="start_feature_fin_left">
+      <static>true</static>
+      <pose>-5.4 1.65 0.85 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.2 0.55 1.7</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.2 0.55 1.7</size></box></geometry><material><script><name>Gazebo/Yellow</name></script></material></visual>
+      </link>
+    </model>
+
+    <model name="start_feature_box_left">
+      <static>true</static>
+      <pose>-7.0 1.05 0.6 0 0 0.45</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.7 0.5 1.2</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.7 0.5 1.2</size></box></geometry><material><script><name>Gazebo/Blue</name></script></material></visual>
+      </link>
+    </model>
+
+    <model name="start_feature_cyl_right">
+      <static>true</static>
+      <pose>-8.0 -1.2 0.8 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><cylinder><radius>0.25</radius><length>1.6</length></cylinder></geometry></collision>
+        <visual name="visual"><geometry><cylinder><radius>0.25</radius><length>1.6</length></cylinder></geometry><material><script><name>Gazebo/Orange</name></script></material></visual>
+      </link>
+    </model>
+
+    <!-- Middle zone intentionally sparse: no extra landmarks -->
+
+    <!-- End zone features: rich geometry near far end -->
+    <model name="end_feature_fin_right">
+      <static>true</static>
+      <pose>-34.5 -1.68 0.95 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.25 0.55 1.9</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.25 0.55 1.9</size></box></geometry><material><script><name>Gazebo/Blue</name></script></material></visual>
+      </link>
+    </model>
+
+    <model name="end_feature_box_right">
+      <static>true</static>
+      <pose>-35.6 -1.08 0.8 0 0 0.2</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.9 0.5 1.6</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.9 0.5 1.6</size></box></geometry><material><script><name>Gazebo/Yellow</name></script></material></visual>
+      </link>
+    </model>
+
+    <model name="end_feature_box_left">
+      <static>true</static>
+      <pose>-38.2 1.05 0.7 0 0 -0.35</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.8 0.55 1.4</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.8 0.55 1.4</size></box></geometry><material><script><name>Gazebo/Green</name></script></material></visual>
+      </link>
+    </model>
+
+    <model name="end_feature_cyl_left">
+      <static>true</static>
+      <pose>-39.2 1.42 0.95 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><cylinder><radius>0.22</radius><length>1.9</length></cylinder></geometry></collision>
+        <visual name="visual"><geometry><cylinder><radius>0.22</radius><length>1.9</length></cylinder></geometry><material><script><name>Gazebo/Red</name></script></material></visual>
+      </link>
+    </model>
+
+    <model name="end_feature_box_far_right">
+      <static>true</static>
+      <pose>-40.5 -1.0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>1.0 1.0 1.0</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>1.0 1.0 1.0</size></box></geometry><material><script><name>Gazebo/Green</name></script></material></visual>
+      </link>
+    </model>
+  </world>
+</sdf>

@@ -1,0 +1,141 @@
+# Simple Maze Map
+# Grid-based maze with walls and circular obstacles
+# Map coordinate system: center at origin (-5,-5) to (5,5)
+# Designed for limo vehicle (0.556m × 0.363m)
+
+world:
+  width: 10.0
+  height: 10.0
+
+obstacles:
+  # ===== Boundary Walls (4 walls) =====
+
+  # Bottom boundary wall
+  - shape:
+      type: 'rectangle'
+      length: 10.4
+      width: 0.2
+    pose:
+      x: 0.0
+      y: -5.0
+      yaw: 0.0
+
+  # Top boundary wall
+  - shape:
+      type: 'rectangle'
+      length: 10.4
+      width: 0.2
+    pose:
+      x: 0.0
+      y: 5.0
+      yaw: 0.0
+
+  # Left boundary wall
+  - shape:
+      type: 'rectangle'
+      length: 10.0
+      width: 0.2
+    pose:
+      x: -5.0
+      y: 0.0
+      yaw: 1.5708  # π/2
+
+  # Right boundary wall
+  - shape:
+      type: 'rectangle'
+      length: 10.0
+      width: 0.2
+    pose:
+      x: 5.0
+      y: 0.0
+      yaw: 1.5708  # π/2
+
+  # ===== Obstacles (5 ZONES) =====
+
+  # ZONE 1: Top-Left
+  - shape: {type: 'rectangle', length: 2.6, width: 0.2}
+    pose: {x: -1.3, y: -1.4, yaw: 1.5708}
+  - shape: {type: 'rectangle', length: 2.2, width: 0.2}
+    pose: {x: -2.4, y: -3.5, yaw: -0.785}
+  - shape: {type: 'rectangle', length: 0.28, width: 0.1}
+    pose: {x: -3.32, y: -1.0, yaw: 0.0}
+  - shape: {type: 'rectangle', length: 0.28, width: 0.1}
+    pose: {x: -3.88, y: -2.2, yaw: 0.0}
+  - shape: {type: 'rectangle', length: 1.2, width: 0.2}
+    pose: {x: -0.53, y: -0.35, yaw: -1.49}
+  - shape: {type: 'circle', radius: 0.3}
+    pose: {x: -3.5, y: -3.5, yaw: 0.0}
+
+  # ZONE 2: Bottom-Left
+  - shape: {type: 'rectangle', length: 4.5, width: 0.2}
+    pose: {x: 1.7, y: -0.7, yaw: 0.0}
+  - shape: {type: 'rectangle', length: 3.6, width: 0.2}
+    pose: {x: 0.6, y: -2.4, yaw: -1.0}
+  - shape: {type: 'rectangle', length: 3.0, width: 0.2}
+    pose: {x: 4.0, y: -2.8, yaw: 1.5708}
+  - shape: {type: 'rectangle', length: 1.5, width: 0.2}
+    pose: {x: 2.35, y: -3.8, yaw: 0.0}
+  - shape: {type: 'rectangle', length: 1.4, width: 0.2}
+    pose: {x: 1.65, y: -3.2, yaw: 1.5708}
+  - shape: {type: 'rectangle', length: 1.0, width: 0.2}
+    pose: {x: 3.5, y: -4.0, yaw: -0.35}
+  - shape: {type: 'circle', radius: 0.3}
+    pose: {x: 2.5, y: -2.0, yaw: 0.0}
+
+  # ZONE 3: Top-Right
+  - shape: {type: 'rectangle', length: 6.2, width: 0.2}
+    pose: {x: -4.1, y: -0.1, yaw: 1.5708}
+  - shape: {type: 'rectangle', length: 6.2, width: 0.2}
+    pose: {x: -3.1, y: 0.35, yaw: 1.5708}
+  - shape: {type: 'rectangle', length: 0.5, width: 0.2}
+    pose: {x: -3.65, y: 4.35, yaw: -0.785}
+  - shape: {type: 'rectangle', length: 0.5, width: 0.2}
+    pose: {x: -3.4, y: 4.3, yaw: 0.785}
+  - shape: {type: 'rectangle', length: 0.5, width: 0.2}
+    pose: {x: -2.9, y: 3.6, yaw: -0.785}
+  - shape: {type: 'rectangle', length: 0.5, width: 0.2}
+    pose: {x: -2.95, y: 3.85, yaw: 0.785}
+  - shape: {type: 'rectangle', length: 0.23, width: 0.1}
+    pose: {x: -3.3, y: 2.7, yaw: 0.0}
+  - shape: {type: 'rectangle', length: 0.23, width: 0.1}
+    pose: {x: -3.9, y: 2.7, yaw: 0.0}
+  - shape: {type: 'rectangle', length: 0.55, width: 0.1}
+    pose: {x: -3.38, y: 1.6, yaw: -0.785}
+  - shape: {type: 'rectangle', length: 0.55, width: 0.1}
+    pose: {x: -3.82, y: 0.4, yaw: -0.785}
+  - shape: {type: 'rectangle', length: 1.6, width: 0.2}
+    pose: {x: -2.0, y: 0.0, yaw: 0.0}
+  - shape: {type: 'rectangle', length: 1.2, width: 0.2}
+    pose: {x: -2.15, y: 4.35, yaw: -0.85}
+  - shape: {type: 'rectangle', length: 1.2, width: 0.2}
+    pose: {x: -1.45, y: 3.4, yaw: -1.0}
+  - shape: {type: 'rectangle', length: 1.8, width: 0.2}
+    pose: {x: -1.0, y: 2.1, yaw: -1.4}
+  - shape: {type: 'rectangle', length: 1.1, width: 0.2}
+    pose: {x: -0.7, y: 0.7, yaw: -1.3}
+  - shape: {type: 'circle', radius: 0.3}
+    pose: {x: -1.85, y: 1.0, yaw: 0.0}
+
+  # ZONE 4: Bottom-Right
+  - shape: {type: 'rectangle', length: 3.2, width: 0.2}
+    pose: {x: 1.0, y: 2.5, yaw: 1.5708}
+  - shape: {type: 'rectangle', length: 2.1, width: 0.2}
+    pose: {x: 1.9, y: 0.1, yaw: 0.0}
+  - shape: {type: 'rectangle', length: 2.5, width: 0.2}
+    pose: {x: 2.87, y: 1.3, yaw: 1.5708}
+  - shape: {type: 'rectangle', length: 1.9, width: 0.2}
+    pose: {x: 2.87, y: 2.55, yaw: 0.0}
+  - shape: {type: 'rectangle', length: 1.8, width: 0.2}
+    pose: {x: 3.1, y: 4.1, yaw: 1.5708}
+  - shape: {type: 'rectangle', length: 0.6, width: 0.2}
+    pose: {x: 3.5, y: 4.1, yaw: 0.0}
+  - shape: {type: 'rectangle', length: 5.0, width: 0.15}
+    pose: {x: 4.2, y: 1.3, yaw: 1.5708}
+  - shape: {type: 'rectangle', length: 5.0, width: 0.15}
+    pose: {x: 4.75, y: 1.3, yaw: 1.5708}
+
+  # ZONE 5: Center
+  - shape: {type: 'rectangle', length: 1.2, width: 0.2}
+    pose: {x: 0.0, y: 0.0, yaw: 0.785}
+  - shape: {type: 'rectangle', length: 1.2, width: 0.2}
+    pose: {x: 0.0, y: 0.0, yaw: -0.785}

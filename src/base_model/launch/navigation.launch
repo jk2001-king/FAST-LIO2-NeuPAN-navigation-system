@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <!-- Map server -->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(find base_model)/maps/hit0804.yaml"/>
+ 
+  <!-- AMCL --> 
+  <include file="$(find base_model)/launch/include/amcl_diff.launch"/>
+  <node pkg="base_model" type="amcl_odom_pub.py" name="amcl_odom"/>
+
+  <!-- Move Base -->
+  <include file="$(find base_model)/launch/include/move_base.launch"/>
+  
+  <!-- Wheel Command -->
+  <node pkg="base_model" type="wheel_cmd.py" name="wheel_cmd" output="screen"/>
+
+  <!-- Costmap Cleaner -->
+  <node pkg="base_model" type="costmap_cleaner.py" name="costmap_cleaner" output="screen"/>
+
+</launch>

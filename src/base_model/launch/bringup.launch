@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <!-- Robot Description -->
+  <param name="robot_description" textfile="$(find base_model)/urdf/wheel.xacro"/>
+  <!--param name="robot_description" textfile="$(find base_model)/urdf/scout_v2.urdf.xacro'"/-->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <!-- UART -->
+  <node pkg="base_model" type="uart.py" name="uart" output="screen"/>
+
+  <!-- Sensors -->
+  <include file="$(find base_model)/launch/include/vectornav.launch"/>
+  <include file="$(find base_model)/launch/include/rplidar_s1_multi.launch"/>
+  <include file="$(find base_model)/launch/include/laserscan_multi_merger.launch"/>
+
+  <!-- Static TF -->
+  <include file="$(find base_model)/launch/include/static_tf.launch"/>
+
+  <!-- Odometry -->
+  <node pkg="base_model" type="odom_pub.py" name="odom_pub" output="screen"/>
+
+  <!-- EKF Localization -->
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization_node">
+    <rosparam command="load" file="$(find base_model)/config/localization.yaml"/>
+  </node>
+  
+</launch>

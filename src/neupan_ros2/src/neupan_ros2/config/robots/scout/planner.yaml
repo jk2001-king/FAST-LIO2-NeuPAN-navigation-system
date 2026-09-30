@@ -1,0 +1,41 @@
+# mpc
+receding: 24
+step_time: 0.18
+ref_speed: 0.38
+device: 'cpu'
+time_print: False
+collision_threshold: 0.02
+
+# robot (Scout-specific parameters)
+robot:
+  kinematics: 'diff'
+  max_speed: [0.55, 1.0]
+  max_acce: [0.8, 1.0]
+  length: 0.615
+  width: 0.54
+
+# initial path
+ipath:
+  interval: 0.1
+  curve_style: 'line'   # 'dubins' or reeds or line
+  min_radius: 0.05
+  loop: False
+  arrive_threshold: 0.35
+  close_threshold: 0.05
+  arrive_index_threshold: 3
+
+# proximal alternating minimization network
+pan:
+  iter_num: 4
+  dune_max_num: 300
+  nrmp_max_num: 10
+  dune_checkpoint: None
+  iter_threshold: 0.1
+
+# adjust parameters
+adjust:
+  q_s: 0.2
+  p_u: 1.5
+  eta: 15.0
+  d_max: 0.10
+  d_min: 0.01
