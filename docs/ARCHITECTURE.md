@@ -2,17 +2,17 @@
 
 ## 설계 목표
 
-FAST-LIO2와 Nav2만 사용하는 시스템은 LiDAR의 기하학적 특징이 부족한 구간에서 scan-to-map registration이 불안정해지면 `map` 기준 로봇 자세가 튈 수 있습니다. 이 프로젝트는 정상 상태의 전역 주행 성능은 유지하면서, 정합 열화 구간에서는 발산 중인 map localization을 제어 기준에서 일시적으로 분리하는 것을 목표로 합니다.
+FAST-LIO2와 Nav2만 사용하는 시스템은 LiDAR의 기하학적 특징이 부족한 구간에서 scan-to-map registration이 불안정해지면 `map` 기준 로봇 자세가 튈 수 있다. 이 프로젝트는 정상 상태의 전역 주행 성능은 유지하면서, 정합 열화 구간에서는 발산 중인 map localization을 제어 기준에서 일시적으로 분리하는 것을 목표로 한다.
 
-핵심 원칙은 다음 세 가지입니다.
+핵심 원칙은 다음 세 가지이다.
 
-1. 정합 상태를 단일 Boolean이 아닌 연속 지표와 보조 gate로 관측합니다.
-2. 전환 순간의 좌표 변환을 고정하여 기존 global path를 wheel-odometry 기준으로 이어갑니다.
-3. 복구 시 live localization과 fallback trajectory의 정렬을 확인한 뒤 Nav2로 돌아갑니다.
+1. 정합 상태를 단일 Boolean이 아닌 연속 지표와 보조 gate로 관측한다.
+2. 전환 순간의 좌표 변환을 고정하여 기존 global path를 wheel-odometry 기준으로 이어간다.
+3. 복구 시 live localization과 fallback trajectory의 정렬을 확인한 뒤 Nav2로 돌아간다.
 
 ## TF와 좌표계
 
-정상 상태의 주요 체인은 다음과 같습니다.
+정상 상태의 주요 체인은 다음과 같다.
 
 ```text
 map ── global localization / transform_fusion ── odom ── robot odometry ── base_link
@@ -23,7 +23,7 @@ map ── global localization / transform_fusion ── odom ── robot odome
 - `/localization`: `map -> base_link`로 융합된 localization 결과
 - `/neupan/current_odom`: `odom_switcher`가 연속성을 보존해 내보내는 NeuPAN용 odometry
 
-fallback 시 새로운 wheel frame을 만들지 않습니다. 전환 직전 출력 pose와 `/odom`의 차이를 SE(2) offset으로 저장하고, wheel odometry에 이 offset을 적용해 계속 `odom` frame의 연속적인 pose를 발행합니다.
+fallback 시 새로운 wheel frame을 만들지 않는다. 전환 직전 출력 pose와 `/odom`의 차이를 SE(2) offset으로 저장하고, wheel odometry에 이 offset을 적용해 계속 `odom` frame의 연속적인 pose를 발행한다.
 
 ## 구성 노드
 
@@ -48,7 +48,7 @@ fallback 시 새로운 wheel frame을 만들지 않습니다. 전환 직전 출�
 - `/plot/c_res`, `/plot/c_vel`, `/plot/c_z`
 - `/plot/auto_armed`, `/plot/fitness_bad`, `/plot/c_bad`, `/plot/loc_bad`
 
-통합 지표는 아래와 같습니다.
+통합 지표는 아래와 같다.
 
 ```text
 c_res = w_res * S_res / S_norm
@@ -58,16 +58,16 @@ C_raw = c_res + c_vel + c_z + localization penalty
 C_degrad[k] = alpha * C_raw[k] + (1 - alpha) * C_degrad[k-1]
 ```
 
-Z 항은 절대 높이가 아니라 정상 주행 중 천천히 갱신되는 baseline과의 drift입니다. 초기 transient로 인한 오검출을 줄이기 위해 goal이 cache되고 fitness가 수신된 뒤 5초가 지나야 auto-toggle이 armed 됩니다.
+Z 항은 절대 높이가 아니라 정상 주행 중 천천히 갱신되는 baseline과의 drift이다. 초기 transient로 인한 오검출을 줄이기 위해 goal이 cache되고 fitness가 수신된 뒤 5초가 지나야 auto-toggle이 armed 된다.
 
 ### `toggle_manager`
 
-- RViz의 `/goal_pose`와 Nav2의 `/plan`을 저장합니다.
-- 열화 진입 직전 정상 `map <-> odom` transform을 frozen transform으로 보존합니다.
-- map-frame global path를 frozen transform으로 `odom`에 재투영해 `/neupan_plan_input_odom`으로 발행합니다.
-- NeuPAN goal을 `/neupan/final_goal`로 전달합니다.
-- fallback 중 goal 근접 상태를 확인하고 `/cmd_vel_override`로 확실히 정지시킵니다.
-- 복구 시 alignment 조건이 만족되면 기존 Nav2 goal을 action으로 다시 전송합니다.
+- RViz의 `/goal_pose`와 Nav2의 `/plan`을 저장한다.
+- 열화 진입 직전 정상 `map <-> odom` transform을 frozen transform으로 보존한다.
+- map-frame global path를 frozen transform으로 `odom`에 재투영해 `/neupan_plan_input_odom`으로 발행한다.
+- NeuPAN goal을 `/neupan/final_goal`로 전달한다.
+- fallback 중 goal 근접 상태를 확인하고 `/cmd_vel_override`로 확실히 정지시킨다.
+- 복구 시 alignment 조건이 만족되면 기존 Nav2 goal을 action으로 다시 전송한다.
 
 ### `odom_switcher`
 
@@ -83,7 +83,7 @@ degraded : /cmd_vel_neupan -> /cmd_vel
 override : /cmd_vel_override -> /cmd_vel
 ```
 
-선택된 source가 0.25초 이상 갱신되지 않으면 오래된 non-zero command를 재사용하지 않고 zero twist를 발행합니다. 현재 source는 `/cmd_vel_mux/source`로 확인할 수 있습니다.
+선택된 source가 0.25초 이상 갱신되지 않으면 오래된 non-zero command를 재사용하지 않고 zero twist를 발행한다. 현재 source는 `/cmd_vel_mux/source`로 확인할 수 있다.
 
 ## 상태 전이
 
@@ -154,5 +154,5 @@ loop at 10 Hz:
 | `recovery_align_threshold` | 0.30 m | 복구 정렬 허용 오차 |
 | `arrive_distance_threshold` | 0.9 m | fallback 도착 근접 기준 |
 
-launch에서 전달한 값이 노드 내부 기본값보다 우선합니다. 최종 실험값은 `master_IICC.launch.py`를 기준으로 합니다.
+launch에서 전달한 값이 노드 내부 기본값보다 우선한다. 최종 실험값은 `master_IICC.launch.py`를 기준으로 한다.
 
