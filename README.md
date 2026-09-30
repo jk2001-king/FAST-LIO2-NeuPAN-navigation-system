@@ -1,5 +1,11 @@
 # FAST-LIO2-NeuPAN Navigation System
 
+![ROS 2](https://img.shields.io/badge/ROS_2-Humble-22314E?style=flat&logo=ros&logoColor=white)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-22.04-E95420?style=flat&logo=ubuntu&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Gazebo-F58113?style=flat)
+![Robot](https://img.shields.io/badge/Robot-Scout_V2-555555?style=flat)
+![LiDAR](https://img.shields.io/badge/LiDAR-Livox_MID--360-007ACC?style=flat)
+
 FAST-LIO2의 정합 상태를 온라인으로 감시하고, 위치 추정이 불안정해지면 Nav2 기반 주행에서 wheel-odometry-referenced NeuPAN 주행으로 자동 전환한 뒤 정합 회복 시 Nav2로 복귀하는 ROS 2 자율주행 시스템이다.
 
 본 저장소는 **AgileX Scout V2 + Livox MID-360 시뮬레이션**을 대상으로 3D LiDAR-IMU localization, 2D Navigation, 학습 기반 로컬 회피, 연속적인 odometry handoff 및 속도 명령 중재를 하나의 launch로 통합한다. 특징점이 부족한 넓은 복도에서 발생하는 registration degradation과 위치 점프가 곧바로 주행 실패로 이어지지 않도록 하는 것이 핵심 목표이다.
